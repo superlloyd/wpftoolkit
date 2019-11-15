@@ -1,14 +1,14 @@
 ﻿/*************************************************************************************
+   
+   Toolkit for WPF
 
-   Extended WPF Toolkit
-
-   Copyright (C) 2007-2013 Xceed Software Inc.
+   Copyright (C) 2007-2018 Xceed Software Inc.
 
    This program is provided to you under the terms of the Microsoft Public
    License (Ms-PL) as published at http://wpftoolkit.codeplex.com/license 
 
    For more features, controls, and fast professional support,
-   pick up the Plus Edition at http://xceed.com/wpf_toolkit
+   pick up the Plus Edition at https://xceed.com/xceed-toolkit-plus-for-wpf/
 
    Stay informed: follow @datagrid on Twitter or Like http://facebook.com/datagrids
 
@@ -121,7 +121,8 @@ namespace Xceed.Wpf.Toolkit
     /// Get/Set the Brush for the Range between Higher and Maximum values. (Brush)
     /// </summary>
 
-    public static readonly DependencyProperty HigherRangeBackgroundProperty = DependencyProperty.Register( "HigherRangeBackground", typeof( Brush ), typeof( RangeSlider ) );
+    public static readonly DependencyProperty HigherRangeBackgroundProperty = DependencyProperty.Register( "HigherRangeBackground", typeof( Brush ), typeof( RangeSlider )
+      , new FrameworkPropertyMetadata( Brushes.Transparent ) );
 
     public Brush HigherRangeBackground
     {
@@ -304,7 +305,8 @@ namespace Xceed.Wpf.Toolkit
     /// Get/Set the Brush for the Range between Minimum and Lower values. (Brush)
     /// </summary>
 
-    public static readonly DependencyProperty LowerRangeBackgroundProperty = DependencyProperty.Register( "LowerRangeBackground", typeof( Brush ), typeof( RangeSlider ) );
+    public static readonly DependencyProperty LowerRangeBackgroundProperty = DependencyProperty.Register( "LowerRangeBackground", typeof( Brush ), typeof( RangeSlider )
+      , new FrameworkPropertyMetadata( Brushes.Transparent ) );
 
     public Brush LowerRangeBackground
     {
@@ -552,7 +554,8 @@ namespace Xceed.Wpf.Toolkit
     /// Get/Set the Brush for the Range between Lower and Higher values [active state]. (Brush)
     /// </summary>
 
-    public static readonly DependencyProperty RangeBackgroundProperty = DependencyProperty.Register( "RangeBackground", typeof( Brush ), typeof( RangeSlider ) );
+    public static readonly DependencyProperty RangeBackgroundProperty = DependencyProperty.Register( "RangeBackground", typeof( Brush ), typeof( RangeSlider )
+      , new FrameworkPropertyMetadata( Brushes.Transparent ) );
 
     public Brush RangeBackground
     {

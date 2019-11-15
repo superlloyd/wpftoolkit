@@ -1,14 +1,14 @@
 ﻿/*************************************************************************************
+   
+   Toolkit for WPF
 
-   Extended WPF Toolkit
-
-   Copyright (C) 2007-2013 Xceed Software Inc.
+   Copyright (C) 2007-2018 Xceed Software Inc.
 
    This program is provided to you under the terms of the Microsoft Public
    License (Ms-PL) as published at http://wpftoolkit.codeplex.com/license 
 
    For more features, controls, and fast professional support,
-   pick up the Plus Edition at http://xceed.com/wpf_toolkit
+   pick up the Plus Edition at https://xceed.com/xceed-toolkit-plus-for-wpf/
 
    Stay informed: follow @datagrid on Twitter or Like http://facebook.com/datagrids
 
@@ -24,6 +24,27 @@ namespace Xceed.Wpf.AvalonDock.Layout
   public class LayoutDocument : LayoutContent
   {
     #region Properties
+
+    #region CanMove
+
+    internal bool _canMove = true;
+    public bool CanMove
+    {
+      get
+      {
+        return _canMove;
+      }
+      set
+      {
+        if( _canMove != value )
+        {
+          _canMove = value;
+          RaisePropertyChanged( "CanMove" );
+        }
+      }
+    }
+
+    #endregion
 
     #region IsVisible
 
@@ -74,12 +95,16 @@ namespace Xceed.Wpf.AvalonDock.Layout
 
       if( !string.IsNullOrWhiteSpace( this.Description ) )
         writer.WriteAttributeString( "Description", this.Description );
+      if( !CanMove )
+        writer.WriteAttributeString( "CanMove", CanMove.ToString() );
     }
 
     public override void ReadXml( System.Xml.XmlReader reader )
     {
       if( reader.MoveToAttribute( "Description" ) )
         this.Description = reader.Value;
+      if( reader.MoveToAttribute( "CanMove" ) )
+        CanMove = bool.Parse( reader.Value );
 
       base.ReadXml( reader );
     }

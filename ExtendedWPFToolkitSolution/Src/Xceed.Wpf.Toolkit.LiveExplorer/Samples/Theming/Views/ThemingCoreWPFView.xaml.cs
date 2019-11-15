@@ -2,7 +2,7 @@
 
    Toolkit for WPF
 
-   Copyright (C) 2007-2017 Xceed Software Inc.
+   Copyright (C) 2007-2018 Xceed Software Inc.
 
    This program is provided to you under the terms of the Microsoft Public
    License (Ms-PL) as published at http://wpftoolkit.codeplex.com/license 
@@ -23,7 +23,6 @@ using Xceed.Wpf.Toolkit;
 using System.Windows.Controls.Primitives;
 using System;
 using System.Data;
-using Xceed.Wpf.DataGrid.Views;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Diagnostics;

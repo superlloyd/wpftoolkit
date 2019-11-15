@@ -1,14 +1,14 @@
 ﻿/*************************************************************************************
+   
+   Toolkit for WPF
 
-   Extended WPF Toolkit
-
-   Copyright (C) 2007-2013 Xceed Software Inc.
+   Copyright (C) 2007-2018 Xceed Software Inc.
 
    This program is provided to you under the terms of the Microsoft Public
    License (Ms-PL) as published at http://wpftoolkit.codeplex.com/license 
 
    For more features, controls, and fast professional support,
-   pick up the Plus Edition at http://xceed.com/wpf_toolkit
+   pick up the Plus Edition at https://xceed.com/xceed-toolkit-plus-for-wpf/
 
    Stay informed: follow @datagrid on Twitter or Like http://facebook.com/datagrids
 
@@ -29,6 +29,7 @@ using System.Collections;
 using System.Collections.ObjectModel;
 using System.Windows.Controls.Primitives;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using System.Windows.Controls;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid
 {
@@ -239,12 +240,15 @@ namespace Xceed.Wpf.Toolkit.PropertyGrid
 
     protected abstract string GetDefaultPropertyName();
 
-    protected abstract IEnumerable<PropertyItem> GenerateSubPropertiesCore();
+    protected abstract void GenerateSubPropertiesCore( Action<IEnumerable<PropertyItem>> updatePropertyItemsCallback );
 
     private void RegenerateProperties()
     {
-      IEnumerable<PropertyItem> subProperties = this.GenerateSubPropertiesCore();
+      this.GenerateSubPropertiesCore( this.UpdatePropertyItemsCallback );
+    }
 
+    private void UpdatePropertyItemsCallback( IEnumerable<PropertyItem> subProperties )
+    {
       foreach( var propertyItem in subProperties )
       {
         this.InitializePropertyItem( propertyItem );
@@ -274,7 +278,7 @@ namespace Xceed.Wpf.Toolkit.PropertyGrid
 
     protected static List<PropertyDescriptor> GetPropertyDescriptors( object instance, bool hideInheritedProperties )
     {
-      PropertyDescriptorCollection descriptors;
+      PropertyDescriptorCollection descriptors = null;
 
       TypeConverter tc = TypeDescriptor.GetConverter( instance );
       if( tc == null || !tc.GetPropertiesSupported() )
@@ -297,7 +301,13 @@ namespace Xceed.Wpf.Toolkit.PropertyGrid
       }
       else
       {
-        descriptors = tc.GetProperties( instance );
+        try
+        {
+          descriptors = tc.GetProperties( instance );
+        }
+        catch( Exception )
+        {
+        }
       }
 
       if( ( descriptors != null ) )
@@ -404,22 +414,6 @@ namespace Xceed.Wpf.Toolkit.PropertyGrid
         foreach( CommandBinding commandBinding in pd.CommandBindings )
         {
           propertyItem.CommandBindings.Add( commandBinding );
-        }
-      }
-
-      // PropertyItem.PropertyType's defaultValue equals current PropertyItem's value => set the DefaultValue attribute
-      if( pd.DefaultValue != null )
-      {
-        var typeDefaultValue = this.GetTypeDefaultValue( propertyItem.PropertyType );
-
-        if( ( (propertyItem.Value != null) && propertyItem.Value.Equals( typeDefaultValue ) )
-              || ( (propertyItem.Value == null) && ( typeDefaultValue == propertyItem.Value ) ) ) 
-        {
-#if VS2008
-        propertyItem.Value = pd.DefaultValue;
-#else
-          propertyItem.SetCurrentValue( PropertyItem.ValueProperty, pd.DefaultValue );
-#endif
         }
       }
     }
