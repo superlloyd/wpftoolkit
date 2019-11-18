@@ -269,6 +269,12 @@ namespace Xceed.Wpf.Toolkit
       }
     }
 
+    protected override void OnPreviewMouseDoubleClick(MouseButtonEventArgs e)
+    {
+      ClosePopup(true);
+      base.OnPreviewMouseDoubleClick(e);
+    }
+
     protected override void OnPreviewMouseUp( MouseButtonEventArgs e )
     {
       if( Mouse.Captured is CalendarItem)
@@ -455,12 +461,12 @@ namespace Xceed.Wpf.Toolkit
       {
         _calendar.BlackoutDates.Clear();
 
-        if( ( this.Minimum != null ) && this.Minimum.HasValue && ( this.Minimum.Value != System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.Calendar.MinSupportedDateTime ) )
+        if( ( this.Minimum != null ) && ( this.Minimum.Value != System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.Calendar.MinSupportedDateTime ) )
         {
           DateTime minDate = this.Minimum.Value;
           _calendar.BlackoutDates.Add( new CalendarDateRange( System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.Calendar.MinSupportedDateTime, minDate.AddDays( -1 ) ) );
         }
-        if( ( this.Maximum != null ) && this.Maximum.HasValue && ( this.Maximum.Value != System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.Calendar.MaxSupportedDateTime ) )
+        if( ( this.Maximum != null ) && ( this.Maximum.Value != System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.Calendar.MaxSupportedDateTime ) )
         {
           DateTime maxDate = this.Maximum.Value;
           _calendar.BlackoutDates.Add( new CalendarDateRange( maxDate.AddDays( 1 ), System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.Calendar.MaxSupportedDateTime ) );
