@@ -1,23 +1,4 @@
-﻿/*************************************************************************************
-   
-   Toolkit for WPF
-
-   Copyright (C) 2007-2020 Xceed Software Inc.
-
-   This program is provided to you under the terms of the XCEED SOFTWARE, INC.
-   COMMUNITY LICENSE AGREEMENT (for non-commercial use) as published at 
-   https://github.com/xceedsoftware/wpftoolkit/blob/master/license.md 
-
-   For more features, controls, and fast professional support,
-   pick up the Plus Edition at https://xceed.com/xceed-toolkit-plus-for-wpf/
-
-   Stay informed: follow @datagrid on Twitter or Like http://facebook.com/datagrids
-
-  ***********************************************************************************/
-
-#region Using directives
-
-using System;
+﻿using System;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
@@ -26,19 +7,6 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows;
 using System.Windows.Markup;
-
-#endregion
-
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle( "Xceed Toolkit for WPF" )]
-[assembly: AssemblyDescription("This assembly implements various Windows Presentation Framework controls.")]
-
-[assembly: AssemblyCompany("Xceed Software Inc.")]
-[assembly: AssemblyProduct( "Xceed Toolkit for WPF" )]
-[assembly: AssemblyCopyright( "Copyright (C) Xceed Software Inc. 2007-2021" )]
-[assembly: AssemblyCulture( "" )]
 
 
 // Needed to enable xbap scenarios
@@ -93,12 +61,4 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("http://schemas.xceed.com/wpf/xaml/toolkit", "Xceed.Wpf.Toolkit.PropertyGrid.Editors")]
 [assembly: XmlnsDefinition("http://schemas.xceed.com/wpf/xaml/toolkit", "Xceed.Wpf.Toolkit.Zoombox")]
 [assembly: XmlnsDefinition("http://schemas.xceed.com/wpf/xaml/toolkit", "Xceed.Wpf.Toolkit.Panels")]
-
-
-#pragma warning disable 1699
-[assembly: AssemblyDelaySign( false )]
-[assembly: AssemblyKeyFile( @"..\..\sn.snk" )]
-[assembly: AssemblyKeyName( "" )]
-#pragma warning restore 1699
-
 

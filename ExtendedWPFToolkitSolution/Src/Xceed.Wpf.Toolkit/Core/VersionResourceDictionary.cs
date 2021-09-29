@@ -34,7 +34,8 @@ namespace Xceed.Wpf.Toolkit.Core
     protected override Uri BuildUri()
     {
       var source = this.SourcePath;
-      string uriStr = PackUriExtension.BuildAbsolutePackUriString( this.AssemblyName, _XceedVersionInfo.Version, source );
+      //string uriStr = PackUriExtension.BuildAbsolutePackUriString(this.AssemblyName, _XceedVersionInfo.Version, source);
+      string uriStr = PackUriExtension.BuildAbsolutePackUriString( this.AssemblyName, "", source );
       return new Uri( uriStr, UriKind.Absolute );
     }
   }

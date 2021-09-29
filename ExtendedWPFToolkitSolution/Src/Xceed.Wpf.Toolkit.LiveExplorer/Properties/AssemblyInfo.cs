@@ -50,9 +50,3 @@ using System.Windows;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion( "4.1" )]
-
-#pragma warning disable 1699
-[assembly: AssemblyDelaySign( false )]
-[assembly: AssemblyKeyFile( @"..\..\..\sn.snk" )]
-[assembly: AssemblyKeyName( "" )]
-#pragma warning restore 1699
