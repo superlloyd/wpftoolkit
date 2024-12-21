@@ -30,6 +30,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Xceed.Wpf.Toolkit.PropertyGrid;
 using System.Windows.Controls;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Xceed.Wpf.Toolkit
 {
@@ -226,9 +227,13 @@ namespace Xceed.Wpf.Toolkit
         try
         {
           Debugger.Break();
-          result = FormatterServices.GetUninitializedObject( sourceType );
+#if NETFRAMEWORK
+          result = FormatterServices.GetUninitializedObject(sourceType);
+#else
+          result = RuntimeHelpers.GetUninitializedObject(sourceType);
+#endif
         }
-        catch( Exception )
+        catch ( Exception )
         {
         }
 
